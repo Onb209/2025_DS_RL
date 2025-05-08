@@ -90,9 +90,10 @@ This will render the agent's behavior following the trained policy in the GridWo
 ├── render.py              # Visualization script
 ├── checkpoints/           # Saved policy files
 ├── env/                   # GridWorld environment
-├── venv/
-├── alogs/ 
-└── assets/
+├── venv/                  # Virtual environment folder
+├── alogs/                 # Folder containing algorithm-related files
+└── assets/                # Folder for environment assets (e.g., graphics)
+
 ```
 ## ✉️ Contact
 For questions or suggestions, please open an issue or contact the repository maintainer.
