@@ -29,14 +29,14 @@ source venv/bin/activate
 
 # Install required packages
 pip install gymnasium pygame
-
+```
 ---
 
 ## 🚀 Training
 To train an RL agent, run the train.py script with the desired algorithm and optional arguments.
 ```bash
 python train.py --algo {algorithm} [--width WIDTH] [--height HEIGHT] [--render]
-
+```
 **Arguments**
 - --algo (str, required): Choose the learning algorithm.
   - Options: vi, pi, mc, td0, sarsa, q_learning
@@ -52,7 +52,7 @@ The trained policy will be saved in the checkpoints/ directory as a .pkl file.
 You can visualize a learned policy using the render.py script:
 ```bash
 python render.py --policy {path_to_policy.pkl}
-
+```
 This will render the agent's behavior following the trained policy in the GridWorld environment.
 ---
 
@@ -66,6 +66,6 @@ This will render the agent's behavior following the trained policy in the GridWo
 ├── venv/
 ├── alogs/ 
 └── assets/
-
+```
 ## ✉️ Contact
 For questions or suggestions, please open an issue or contact the repository maintainer.
