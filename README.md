@@ -15,6 +15,35 @@ Implemented algorithms include:
 
 ---
 
+## 🧭 GridWorld
+
+The GridWorld environment is a 2D grid where each cell can be one of the following types:
+
+- **Normal**: The agent can move to a normal cell with a reward of -1.
+- **Wall**: The agent cannot move into a wall cell. The agent stays in its current position and receives a reward of -1.
+- **Trap**: If the agent moves into a trap cell, it receives a reward of -100, and the episode ends.
+- **Goal**: If the agent reaches the goal cell, it receives a reward of 100, and the episode ends.
+
+### Grid Dimensions
+
+- The grid size can range from **5x5** to **10x10**.
+
+### Actions
+
+- The agent has 4 possible actions:  
+  - **Move Up**  
+  - **Move Down**  
+  - **Move Left**  
+  - **Move Right**
+
+### Transitions and Rewards
+
+- **Normal**: Transitioning into a normal cell results in a reward of -1.
+- **Wall**: The agent cannot move into a wall, and stays in the same position with a reward of -1.
+- **Trap**: If the agent lands on a trap, it receives a reward of -100, and the episode ends.
+- **Goal**: If the agent reaches the goal, it receives a reward of 100, and the episode ends.
+---
+
 ## 🛠️ Installation
 
 We recommend using a virtual environment for package management. This project has been tested on **Ubuntu 20.04** with **Python 3.10**.
