@@ -1,5 +1,3 @@
-# 2025_DS_RL
-
 # Reinforcement Learning Algorithms in GridWorld
 
 This repository contains hands-on practice code for reinforcement learning (RL) algorithms, designed to support educational lectures and tutorials. It provides implementations and experiments for key RL methods in a discrete GridWorld environment.
