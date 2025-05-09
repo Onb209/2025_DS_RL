@@ -56,7 +56,7 @@ python3.10 -m venv venv
 source venv/bin/activate
 
 # Install required packages
-pip install gymnasium pygame
+pip install pygame numpy pillow
 ```
 ---
 
