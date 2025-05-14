@@ -18,7 +18,9 @@ class Action(Enum):
     LEFT = 2
     RIGHT = 3
 
-def load_map_from_file(file_path):
+def load_map_from_file(file_name):
+    file_path = 'env/maps/' + file_name
+    print(file_path)
     with open(file_path, "r") as f:
         data = json.load(f)
 
@@ -93,7 +95,7 @@ class GridWorldEnv:
                 break
 
     def _place_special_tiles(self): # 맵 몇 개 고정해서 저장해놓고 불러오기 (5*5 2개 8*8)
-        random.seed(40)
+        # random.seed(40)
         num_walls = (self.width * self.height) // 5
         num_traps = (self.width * self.height) // 10
         positions = [(i, j) for i in range(self.height) for j in range(self.width)]

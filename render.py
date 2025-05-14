@@ -9,15 +9,21 @@ def load_policy(path):
     with open(path, 'rb') as f:
         return pickle.load(f)
 
-def main(policy_path):
+def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--policy', type=str, required=True, help="Path to policy .pkl file")
-    parser.add_argument('--width', type=int, default=6)
-    parser.add_argument('--height', type=int, default=6)
+    parser.add_argument('--size', type=int, default=8)
+    parser.add_argument('--random', action='store_true', help="Use randomly generated map")
+    # parser.add_argument('--width', type=int, default=6)
+    # parser.add_argument('--height', type=int, default=6)
     args = parser.parse_args()
 
-    env = GridWorldEnv(width=args.width, height=args.height)
-    policy = load_policy(policy_path)
+    map_name = None
+    if not args.random:
+        map_name = f"saved_map_{args.size}.json"
+
+    env = GridWorldEnv(width=args.size, height=args.size, map_file=map_name)
+    policy = load_policy(args.policy)
     state = env.reset()
 
     while True:
