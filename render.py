@@ -3,6 +3,7 @@
 import pickle
 import time
 import argparse
+import random
 from env.gridworld_env import GridWorldEnv, Action
 
 def load_policy(path):
@@ -11,7 +12,7 @@ def load_policy(path):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--policy', type=str, required=True, help="Path to policy .pkl file")
+    parser.add_argument('--policy', type=str, required=False, help="Path to policy .pkl file")
     parser.add_argument('--size', type=int, default=8)
     parser.add_argument('--random', action='store_true', help="Use randomly generated map")
     # parser.add_argument('--width', type=int, default=6)
@@ -23,13 +24,20 @@ def main():
         map_name = f"saved_map_{args.size}.json"
 
     env = GridWorldEnv(width=args.size, height=args.size, map_file=map_name)
-    policy = load_policy(args.policy)
+    
+    policy = None
+    if args.policy:
+        policy = load_policy(args.policy)
+    
     state = env.reset()
 
     while True:
-        action = policy.get(tuple(state), None)
-        if action is None:
-            break
+        if policy:
+            action = policy.get(tuple(state), None)
+            if action is None:
+                break
+        else:
+            action = random.choice(list(Action))
         state, _, done = env.step(action.value)
         env.render()
         time.sleep(0.25)
