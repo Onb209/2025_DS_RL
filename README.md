@@ -14,17 +14,17 @@ Implemented algorithms include:
 ## Policy Iteration
 
 **Policy Evaluation**  
-![Policy Iteration Equation](https://latex.codecogs.com/png.image?\dpi{120}&space;\pi(s)=\arg\max_a\sum_{s'}P(s'|s,a)[R(s,a,s')+\gamma&space;V(s')])
+![Policy Evaluation](https://latex.codecogs.com/png.image?\dpi{120}&space;V^\pi(s)=\sum_a\pi(a|s)\sum_{s'}P(s'|s,a)[R(s,a,s')+\gamma&space;V^\pi(s')])
 
 **Policy Improvement**  
-pi_new(s) = argmax over a [ sum over s' [ P(s'|s,a) * ( R(s,a,s') + gamma * V_pi(s') ) ] ]
+![Policy Improvement](https://latex.codecogs.com/png.image?\dpi{120}&space;\pi_{\text{new}}(s)=\arg\max_a\sum_{s'}P(s'|s,a)[R(s,a,s')+\gamma&space;V^\pi(s')])
 
 
 ## Value Iteration
 
-V(s) = max over a [ sum over s' [ P(s'|s,a) * ( R(s,a,s') + gamma * V(s') ) ] ]
+![Value Update](https://latex.codecogs.com/png.image?\dpi{120}&space;V(s)=\max_a\sum_{s'}P(s'|s,a)[R(s,a,s')+\gamma&space;V(s')])
 
-pi*(s) = argmax over a [ sum over s' [ P(s'|s,a) * ( R(s,a,s') + gamma * V*(s') ) ] ]
+![Policy from Value](https://latex.codecogs.com/png.image?\dpi{120}&space;\pi^*(s)=\arg\max_a\sum_{s'}P(s'|s,a)[R(s,a,s')+\gamma&space;V^*(s')])
 
 
 ---
