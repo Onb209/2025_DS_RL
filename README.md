@@ -8,25 +8,19 @@ Implemented algorithms include:
 - **Value Iteration**
 
 
-![ex](assets/render_img.png)
+![ex](assets/_img/render_img.png)
 
 ---
 ## Policy Iteration
 
 **Policy Evaluation**  
-![value iteration equation](https://latex.codecogs.com/png.image?\dpi{150} \bg_white v_{k+1}(s) = \sum_{a \in \mathcal{A}} \pi(a|s) \left( \mathcal{R}_s^a + \gamma \sum_{s' \in \mathcal{S}} \mathcal{P}_{ss'}^a v_k(s') \right))
+![ex](assets/_img/policy_eval.png)
 
 
-**Policy Improvement**  
-![Policy Improvement](https://latex.codecogs.com/png.image?\dpi{120}&space;\pi_{\text{new}}(s)=\arg\max_a\sum_{s'}P(s'|s,a)[R(s,a,s')+\gamma&space;V^\pi(s')])
-
+![ex](assets/_img/policy_iteration.png)
 
 ## Value Iteration
-
-![Value Update](https://latex.codecogs.com/png.image?\dpi{120}&space;V(s)=\max_a\sum_{s'}P(s'|s,a)[R(s,a,s')+\gamma&space;V(s')])
-
-![Policy from Value](https://latex.codecogs.com/png.image?\dpi{120}&space;\pi^*(s)=\arg\max_a\sum_{s'}P(s'|s,a)[R(s,a,s')+\gamma&space;V^*(s')])
-
+![ex](assets/_img/value_iter.png)
 
 ---
 
@@ -85,7 +79,7 @@ python train.py --algo {algorithm} [--size SIZE] [--random] [--render]
 The trained policy will be saved in the checkpoints/ directory as a .pkl file.
 
 
-![Output](assets/animation.gif)
+![Output](assets/_img/animation.gif)
 
 ---
 
