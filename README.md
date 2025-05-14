@@ -81,6 +81,8 @@ python train.py --algo {algorithm} [--size SIZE] [--random] [--render]
 - --render (flag, optional): Render the environment during training.
 
 The trained policy will be saved in the checkpoints/ directory as a .pkl file.
+
+
 ![Output](assets/animation.gif)
 
 ---
