@@ -7,16 +7,8 @@ Implemented algorithms include:
 - **Policy Iteration**
 - **Value Iteration**
 
----
 
-## 🖼️ Rendering a Trained Policy
-You can visualize a learned policy using the render.py script:
-```bash
-python render.py --policy {path_to_policy.pkl}
-```
-This will render the agent's behavior following the trained policy in the GridWorld environment.
 ![ex](render_img.png)
-
 
 ---
 
@@ -90,3 +82,11 @@ python train.py --algo {algorithm} [--width WIDTH] [--height HEIGHT] [--render]
 
 The trained policy will be saved in the checkpoints/ directory as a .pkl file.
 
+---
+
+## 🖼️ Rendering a Trained Policy
+You can visualize a learned policy using the render.py script:
+```bash
+python render.py --policy {path_to_policy.pkl}
+```
+This will render the agent's behavior following the trained policy in the GridWorld environment.
