@@ -12,7 +12,7 @@ Implemented algorithms include:
 
 ---
 
-<details><summary>Dynamic Programing</summary>
+## <details><summary>Dynamic Programing</summary>
 
 ## Policy Iteration
 **Policy Evaluation**  
