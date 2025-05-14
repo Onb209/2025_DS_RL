@@ -11,7 +11,7 @@ Implemented algorithms include:
 
 ## 🛠️ Installation
 
-We recommend using a virtual environment for package management. This project has been tested on **Ubuntu 20.04** with **Python 3.10**.
+We recommend using a virtual environment for package management. This project has been tested on **Windows 10** and **Ubuntu 20.04**, using **Python 3.10**.
 
 ```bash
 # Clone the repository and navigate to the project folder
@@ -19,7 +19,13 @@ cd {project_folder}
 
 # Create and activate a virtual environment
 python3.10 -m venv venv
+
+# Activate the virtual environment
+# On Windows
+.\venv\Scripts\activate
+# On Linux
 source venv/bin/activate
+
 
 # Install required packages
 pip install pygame numpy matplotlib pillow
