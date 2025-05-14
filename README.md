@@ -11,7 +11,7 @@ Implemented algorithms include:
 
 ## 🛠️ Installation
 
-We recommend using a virtual environment for package management. 
+It is recommended to use a virtual environment for package management.
 This project has been tested on **Windows 10** and **Ubuntu 20.04**, using **Python 3.10**.
 
 ```bash
@@ -34,7 +34,7 @@ pip install pygame numpy matplotlib pillow
 ---
 
 ## 🚀 Training
-To train an RL agent, run the train.py script with the desired algorithm and optional arguments.
+To train an RL agent, run the `train.py` script with the desired algorithm and optional arguments.
 ```bash
 python train.py --algo {algorithm} [--size SIZE] [--random] [--render]
 ```
@@ -53,7 +53,7 @@ The trained policy will be saved in the checkpoints/ directory as a .pkl file.
 ---
 
 ## 🖼️ Rendering a Trained Policy
-You can visualize a learned policy using the render.py script:
+You can visualize a learned policy using the `render.py` script:
 ```bash
 python render.py --policy {path_to_policy.pkl} [--size SIZE] [--random]
 ```
@@ -77,7 +77,7 @@ This will render the agent's behavior following the trained policy in the GridWo
 
 ## 🌍 GridWorld
 
-The GridWorld environment is a 2D grid where each cell can be one of the following types:
+The GridWorld environment is a 2D grid-based world where each cell can be one of the following types:
 
 - 🟩 **Normal**: The agent can move to a normal cell with a reward of -1.
 - 🧱 **Wall**: The agent cannot move into a wall cell. The agent stays in its current position and receives a reward of -1.
