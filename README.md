@@ -14,7 +14,7 @@ Implemented algorithms include:
 ## Policy Iteration
 
 **Policy Evaluation**  
-![Policy Evaluation](https://latex.codecogs.com/png.image?\dpi{120}&space;V^\pi(s)=\sum_a\pi(a|s)\sum_{s'}P(s'|s,a)[R(s,a,s')+\gamma&space;V^\pi(s')])
+![Policy Evaluation](https://latex.codecogs.com/png.image?\dpi{120} \nu_{k+1}(s)=\sum_{a\in\mathcal{A}} \pi(a|s)\left(\mathcal{R}_s^a+\gamma\sum_{s'\in\mathcal{S}}\mathcal{P}_{ss'}^a\nu_k(s')\right))
 
 **Policy Improvement**  
 ![Policy Improvement](https://latex.codecogs.com/png.image?\dpi{120}&space;\pi_{\text{new}}(s)=\arg\max_a\sum_{s'}P(s'|s,a)[R(s,a,s')+\gamma&space;V^\pi(s')])
@@ -27,22 +27,6 @@ Implemented algorithms include:
 ![Policy from Value](https://latex.codecogs.com/png.image?\dpi{120}&space;\pi^*(s)=\arg\max_a\sum_{s'}P(s'|s,a)[R(s,a,s')+\gamma&space;V^*(s')])
 
 
----
-
-## 📁 Folder Structure
-```bash
-.
-├── train.py               # Main training script
-├── render.py              # Visualization script
-├── checkpoints/           # Saved policy files
-├── env/                   # GridWorld environment
-│   └── maps/              # Predefined map configurations
-├── outputs/               # Plotted value tables and action maps
-├── venv/                  # Virtual environment folder
-├── algos/                 # Folder containing algorithm-related files
-└── assets/                # Folder for environment assets (e.g., graphics)
-
-```
 ---
 
 ## 🌍 GridWorld
@@ -108,5 +92,21 @@ The trained policy will be saved in the checkpoints/ directory as a .pkl file.
 You can visualize a learned policy using the render.py script:
 ```bash
 python render.py --policy {path_to_policy.pkl} [--size SIZE] [--random]
+
+## 📁 Folder Structure
+```bash
+.
+├── train.py               # Main training script
+├── render.py              # Visualization script
+├── checkpoints/           # Saved policy files
+├── env/                   # GridWorld environment
+│   └── maps/              # Predefined map configurations
+├── outputs/               # Plotted value tables and action maps
+├── venv/                  # Virtual environment folder
+├── algos/                 # Folder containing algorithm-related files
+└── assets/                # Folder for environment assets (e.g., graphics)
+
+```
+---
 ```
 This will render the agent's behavior following the trained policy in the GridWorld environment.
