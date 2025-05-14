@@ -12,7 +12,7 @@ Implemented algorithms include:
 
 ---
 
-## <details><summary>Dynamic Programing</summary>
+<details><summary style="font-size: 20px; font-weight: bold;">Dynamic Programing</summary>
 
 ## Policy Iteration
 **Policy Evaluation**  
@@ -28,7 +28,7 @@ Implemented algorithms include:
 
 ---
 
-## <details><summary>🌍 GridWorld</summary>
+<details><summary style="font-size: 20px; font-weight: bold;">🌍 GridWorld</summary>
 
 The GridWorld environment is a 2D grid where each cell can be one of the following types:
 
@@ -98,7 +98,7 @@ This will render the agent's behavior following the trained policy in the GridWo
 
 ---
 
-## <details><summary>📁 Folder Structure</summary>
+<details><summary style="font-size: 20px; font-weight: bold;">📁 Folder Structure</summary>
 
 ```bash
 .
