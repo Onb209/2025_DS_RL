@@ -12,47 +12,6 @@ Implemented algorithms include:
 
 ---
 
-<details><summary style="font-size: 24px; font-weight: bold; cursor: pointer; user-select: none;">Dynamic Programing</summary>
-
-## Policy Iteration
-**Policy Evaluation**  
-![ex](assets/_img/policy_eval.png)
-
-
-![ex](assets/_img/policy_iteration.png)
-
-## Value Iteration
-![ex](assets/_img/value_iter.png)
-
-</details>
-
----
-
-<details><summary style="font-size: 20px; font-weight: bold;">🌍 GridWorld</summary>
-
-The GridWorld environment is a 2D grid where each cell can be one of the following types:
-
-- 🟩 **Normal**: The agent can move to a normal cell with a reward of -1.
-- 🧱 **Wall**: The agent cannot move into a wall cell. The agent stays in its current position and receives a reward of -1.
-- ☠️ **Trap**: If the agent moves into a trap cell, it receives a reward of -100, and the episode ends.
-- 🎯 **Goal**: If the agent reaches the goal cell, it receives a reward of 100, and the episode ends.
-
-### 📏 Grid Dimensions
-
-- The grid size can range from **5x5** to **10x10**.
-
-### 🏃‍♂️ Actions
-
-- The agent has 4 possible actions:  
-  - ⬆️ **Move Up**  
-  - ⬇️ **Move Down**  
-  - ⬅️ **Move Left**  
-  - ➡️ **Move Right**
-
-</details>
-
----
-
 ## 🛠️ Installation
 
 We recommend using a virtual environment for package management. This project has been tested on **Ubuntu 20.04** with **Python 3.10**.
@@ -98,7 +57,42 @@ This will render the agent's behavior following the trained policy in the GridWo
 
 ---
 
-<details><summary style="font-size: 20px; font-weight: bold;">📁 Folder Structure</summary>
+## Policy Iteration
+**Policy Evaluation**  
+![ex](assets/_img/policy_eval.png)
+
+
+![ex](assets/_img/policy_iteration.png)
+
+## Value Iteration
+![ex](assets/_img/value_iter.png)
+
+---
+
+🌍 GridWorld
+
+The GridWorld environment is a 2D grid where each cell can be one of the following types:
+
+- 🟩 **Normal**: The agent can move to a normal cell with a reward of -1.
+- 🧱 **Wall**: The agent cannot move into a wall cell. The agent stays in its current position and receives a reward of -1.
+- ☠️ **Trap**: If the agent moves into a trap cell, it receives a reward of -100, and the episode ends.
+- 🎯 **Goal**: If the agent reaches the goal cell, it receives a reward of 100, and the episode ends.
+
+### 📏 Grid Dimensions
+
+- The grid size can range from **5x5** to **10x10**.
+
+### 🏃‍♂️ Actions
+
+- The agent has 4 possible actions:  
+  - ⬆️ **Move Up**  
+  - ⬇️ **Move Down**  
+  - ⬅️ **Move Left**  
+  - ➡️ **Move Right**
+
+---
+
+📁 Folder Structure
 
 ```bash
 .
@@ -113,7 +107,5 @@ This will render the agent's behavior following the trained policy in the GridWo
 └── assets/                # Folder for environment assets (e.g., graphics)
 
 ```
-
-</details>
 
 
