@@ -14,26 +14,18 @@ Implemented algorithms include:
 ## Policy Iteration
 
 **Policy Evaluation**  
-\[
-V^\pi(s) = \sum_{a} \pi(a|s) \sum_{s'} P(s'|s,a) \left[ R(s,a,s') + \gamma V^\pi(s') \right]
-\]
+V_pi(s) = sum over a [ pi(a|s) * sum over s' [ P(s'|s,a) * ( R(s,a,s') + gamma * V_pi(s') ) ] ]
 
 **Policy Improvement**  
-\[
-\pi_{\text{new}}(s) = \arg\max_a \sum_{s'} P(s'|s,a) \left[ R(s,a,s') + \gamma V^\pi(s') \right]
-\]
+pi_new(s) = argmax over a [ sum over s' [ P(s'|s,a) * ( R(s,a,s') + gamma * V_pi(s') ) ] ]
 
----
 
 ## Value Iteration
 
-\[
-V_{k+1}(s) = \max_a \sum_{s'} P(s'|s,a) \left[ R(s,a,s') + \gamma V_k(s') \right]
-\]
+V(s) = max over a [ sum over s' [ P(s'|s,a) * ( R(s,a,s') + gamma * V(s') ) ] ]
 
-\[
-\pi^*(s) = \arg\max_a \sum_{s'} P(s'|s,a) \left[ R(s,a,s') + \gamma V^*(s') \right]
-\]
+pi*(s) = argmax over a [ sum over s' [ P(s'|s,a) * ( R(s,a,s') + gamma * V*(s') ) ] ]
+
 
 ---
 
