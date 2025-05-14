@@ -9,6 +9,33 @@ Implemented algorithms include:
 
 ---
 
+## 🖼️ Rendering a Trained Policy
+You can visualize a learned policy using the render.py script:
+```bash
+python render.py --policy {path_to_policy.pkl}
+```
+This will render the agent's behavior following the trained policy in the GridWorld environment.
+![ex](render_img.png)
+
+
+---
+
+## 📁 Folder Structure
+```bash
+.
+├── train.py               # Main training script
+├── render.py              # Visualization script
+├── checkpoints/           # Saved policy files
+├── env/                   # GridWorld environment
+│   └── maps/              # Predefined map configurations
+├── outputs/               # Plotted value tables and action maps
+├── venv/                  # Virtual environment folder
+├── alogs/                 # Folder containing algorithm-related files
+└── assets/                # Folder for environment assets (e.g., graphics)
+
+```
+---
+
 ## 🌍 GridWorld
 
 The GridWorld environment is a 2D grid where each cell can be one of the following types:
@@ -62,32 +89,4 @@ python train.py --algo {algorithm} [--width WIDTH] [--height HEIGHT] [--render]
 - --render (flag, optional): Render the environment during training.
 
 The trained policy will be saved in the checkpoints/ directory as a .pkl file.
-
----
-
-## 🖼️ Rendering a Trained Policy
-You can visualize a learned policy using the render.py script:
-```bash
-python render.py --policy {path_to_policy.pkl}
-```
-This will render the agent's behavior following the trained policy in the GridWorld environment.
-![ex](render_img.png)
-
-
----
-
-## 📁 Folder Structure
-```bash
-.
-├── train.py               # Main training script
-├── render.py              # Visualization script
-├── checkpoints/           # Saved policy files
-├── env/                   # GridWorld environment
-│   └── maps/              # Predefined map configurations
-├── outputs/               # Plotted value tables and action maps
-├── venv/                  # Virtual environment folder
-├── alogs/                 # Folder containing algorithm-related files
-└── assets/                # Folder for environment assets (e.g., graphics)
-
-```
 
