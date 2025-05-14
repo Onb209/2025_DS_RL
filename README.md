@@ -29,7 +29,7 @@ source venv/bin/activate
 
 
 # Install required packages
-pip install pygame numpy matplotlib pillow
+pip install pygame numpy matplotlib pillow gymnasium
 ```
 ---
 
