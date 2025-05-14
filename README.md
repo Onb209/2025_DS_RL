@@ -71,6 +71,8 @@ You can visualize a learned policy using the render.py script:
 python render.py --policy {path_to_policy.pkl}
 ```
 This will render the agent's behavior following the trained policy in the GridWorld environment.
+
+
 ---
 
 ## 📁 Folder Structure
@@ -80,6 +82,8 @@ This will render the agent's behavior following the trained policy in the GridWo
 ├── render.py              # Visualization script
 ├── checkpoints/           # Saved policy files
 ├── env/                   # GridWorld environment
+│   └── maps/              # Predefined map configurations
+├── outputs/               # Plotted value tables and action maps
 ├── venv/                  # Virtual environment folder
 ├── alogs/                 # Folder containing algorithm-related files
 └── assets/                # Folder for environment assets (e.g., graphics)
