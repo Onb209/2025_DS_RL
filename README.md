@@ -13,7 +13,7 @@ Implemented algorithms include:
 ---
 
 ## <details><summary>Dynamic Programing</summary>
-<details>
+
 ## Policy Iteration
 **Policy Evaluation**  
 ![ex](assets/_img/policy_eval.png)
@@ -23,13 +23,13 @@ Implemented algorithms include:
 
 ## Value Iteration
 ![ex](assets/_img/value_iter.png)
-</details>
+
 </details>
 
 ---
 
 ## <details><summary>🌍 GridWorld</summary>
-<details>
+
 The GridWorld environment is a 2D grid where each cell can be one of the following types:
 
 - 🟩 **Normal**: The agent can move to a normal cell with a reward of -1.
@@ -48,6 +48,7 @@ The GridWorld environment is a 2D grid where each cell can be one of the followi
   - ⬇️ **Move Down**  
   - ⬅️ **Move Left**  
   - ➡️ **Move Right**
+
 </details>
 
 ---
@@ -98,7 +99,7 @@ This will render the agent's behavior following the trained policy in the GridWo
 ---
 
 ## <details><summary>📁 Folder Structure</summary>
-<details>
+
 ```bash
 .
 ├── train.py               # Main training script
@@ -112,7 +113,7 @@ This will render the agent's behavior following the trained policy in the GridWo
 └── assets/                # Folder for environment assets (e.g., graphics)
 
 ```
-</details>
+
 </details>
 
 
