@@ -7,9 +7,6 @@ Implemented algorithms include:
 - **Policy Iteration**
 - **Value Iteration**
 
-
-![ex](assets/_img/render_img.png)
-
 ---
 
 ## 🛠️ Installation
@@ -55,6 +52,8 @@ python render.py --policy {path_to_policy.pkl} [--size SIZE] [--random]
 ```
 This will render the agent's behavior following the trained policy in the GridWorld environment.
 
+![ex](assets/_img/render_img.png)
+
 ---
 
 ## Policy Iteration
@@ -69,7 +68,7 @@ This will render the agent's behavior following the trained policy in the GridWo
 
 ---
 
-🌍 GridWorld
+## 🌍 GridWorld
 
 The GridWorld environment is a 2D grid where each cell can be one of the following types:
 
@@ -92,7 +91,7 @@ The GridWorld environment is a 2D grid where each cell can be one of the followi
 
 ---
 
-📁 Folder Structure
+## 📁 Folder Structure
 
 ```bash
 .
