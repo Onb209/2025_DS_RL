@@ -75,7 +75,7 @@ python train.py --algo {algorithm} [--size SIZE] [--random] [--render]
 ```
 **Arguments**
 - --algo (str, required): Choose the learning algorithm.
-  - Options: vi, pi
+  - Options: pi, vi
 - --size (int, optional): Width & Height of the GridWorld. Default is 6.
 - --random (flag, optional): Use randomly generated map.
 - --render (flag, optional): Render the environment during training.
