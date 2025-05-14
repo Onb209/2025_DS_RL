@@ -11,8 +11,8 @@ Implemented algorithms include:
 ![ex](assets/_img/render_img.png)
 
 ---
+## <details><summary>Dynamic Programing</summary>
 ## Policy Iteration
-
 **Policy Evaluation**  
 ![ex](assets/_img/policy_eval.png)
 
@@ -22,9 +22,10 @@ Implemented algorithms include:
 ## Value Iteration
 ![ex](assets/_img/value_iter.png)
 
+</details>
 ---
 
-## 🌍 GridWorld
+## <details><summary>🌍 GridWorld</summary>
 
 The GridWorld environment is a 2D grid where each cell can be one of the following types:
 
@@ -87,8 +88,12 @@ The trained policy will be saved in the checkpoints/ directory as a .pkl file.
 You can visualize a learned policy using the render.py script:
 ```bash
 python render.py --policy {path_to_policy.pkl} [--size SIZE] [--random]
+```
+This will render the agent's behavior following the trained policy in the GridWorld environment.
 
-## 📁 Folder Structure
+---
+
+## <details><summary>📁 Folder Structure</summary>
 ```bash
 .
 ├── train.py               # Main training script
@@ -102,6 +107,6 @@ python render.py --policy {path_to_policy.pkl} [--size SIZE] [--random]
 └── assets/                # Folder for environment assets (e.g., graphics)
 
 ```
----
-```
-This will render the agent's behavior following the trained policy in the GridWorld environment.
+</details>
+
+
