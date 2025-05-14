@@ -14,7 +14,7 @@ Implemented algorithms include:
 ## Policy Iteration
 
 **Policy Evaluation**  
-V_pi(s) = sum over a [ pi(a|s) * sum over s' [ P(s'|s,a) * ( R(s,a,s') + gamma * V_pi(s') ) ] ]
+![Policy Iteration Equation](https://latex.codecogs.com/png.image?\dpi{120}&space;\pi(s)=\arg\max_a\sum_{s'}P(s'|s,a)[R(s,a,s')+\gamma&space;V(s')])
 
 **Policy Improvement**  
 pi_new(s) = argmax over a [ sum over s' [ P(s'|s,a) * ( R(s,a,s') + gamma * V_pi(s') ) ] ]
