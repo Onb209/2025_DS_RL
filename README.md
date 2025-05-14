@@ -7,6 +7,8 @@ Implemented algorithms include:
 - **Policy Iteration**
 - **Value Iteration**
 
+---
+
 ## 🛠️ Installation
 
 We recommend using a virtual environment for package management. This project has been tested on **Ubuntu 20.04** with **Python 3.10**.
