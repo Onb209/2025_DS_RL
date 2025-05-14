@@ -7,6 +7,25 @@ Implemented algorithms include:
 - **Policy Iteration**
 - **Value Iteration**
 
+
+![ex](render_img.png)
+
+---
+
+## 📁 Folder Structure
+```bash
+.
+├── train.py               # Main training script
+├── render.py              # Visualization script
+├── checkpoints/           # Saved policy files
+├── env/                   # GridWorld environment
+│   └── maps/              # Predefined map configurations
+├── outputs/               # Plotted value tables and action maps
+├── venv/                  # Virtual environment folder
+├── algos/                 # Folder containing algorithm-related files
+└── assets/                # Folder for environment assets (e.g., graphics)
+
+```
 ---
 
 ## 🌍 GridWorld
@@ -45,20 +64,20 @@ python3.10 -m venv venv
 source venv/bin/activate
 
 # Install required packages
-pip install pygame numpy pillow
+pip install pygame numpy matplotlib pillow
 ```
 ---
 
 ## 🚀 Training
 To train an RL agent, run the train.py script with the desired algorithm and optional arguments.
 ```bash
-python train.py --algo {algorithm} [--width WIDTH] [--height HEIGHT] [--render]
+python train.py --algo {algorithm} [--size SIZE] [--random] [--render]
 ```
 **Arguments**
 - --algo (str, required): Choose the learning algorithm.
   - Options: vi, pi
-- --width (int, optional): Width of the GridWorld. Default is 6.
-- --height (int, optional): Height of the GridWorld. Default is 6.
+- --size (int, optional): Width & Height of the GridWorld. Default is 6.
+- --random (flag, optional): Use randomly generated map.
 - --render (flag, optional): Render the environment during training.
 
 The trained policy will be saved in the checkpoints/ directory as a .pkl file.
@@ -68,25 +87,6 @@ The trained policy will be saved in the checkpoints/ directory as a .pkl file.
 ## 🖼️ Rendering a Trained Policy
 You can visualize a learned policy using the render.py script:
 ```bash
-python render.py --policy {path_to_policy.pkl}
+python render.py --policy {path_to_policy.pkl} [--size SIZE] [--random]
 ```
 This will render the agent's behavior following the trained policy in the GridWorld environment.
-
-
----
-
-## 📁 Folder Structure
-```bash
-.
-├── train.py               # Main training script
-├── render.py              # Visualization script
-├── checkpoints/           # Saved policy files
-├── env/                   # GridWorld environment
-│   └── maps/              # Predefined map configurations
-├── outputs/               # Plotted value tables and action maps
-├── venv/                  # Virtual environment folder
-├── alogs/                 # Folder containing algorithm-related files
-└── assets/                # Folder for environment assets (e.g., graphics)
-
-```
-
