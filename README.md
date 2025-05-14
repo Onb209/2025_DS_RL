@@ -11,7 +11,8 @@ Implemented algorithms include:
 
 ## 🛠️ Installation
 
-We recommend using a virtual environment for package management. This project has been tested on **Windows 10** and **Ubuntu 20.04**, using **Python 3.10**.
+We recommend using a virtual environment for package management. 
+This project has been tested on **Windows 10** and **Ubuntu 20.04**, using **Python 3.10**.
 
 ```bash
 # Clone the repository and navigate to the project folder
