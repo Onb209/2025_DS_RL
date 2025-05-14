@@ -22,7 +22,7 @@ Implemented algorithms include:
 │   └── maps/              # Predefined map configurations
 ├── outputs/               # Plotted value tables and action maps
 ├── venv/                  # Virtual environment folder
-├── alogs/                 # Folder containing algorithm-related files
+├── algos/                 # Folder containing algorithm-related files
 └── assets/                # Folder for environment assets (e.g., graphics)
 
 ```
