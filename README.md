@@ -14,7 +14,9 @@ Implemented algorithms include:
 ## Policy Iteration
 
 **Policy Evaluation**  
-![Policy Evaluation](https://latex.codecogs.com/png.image?\dpi{120}&space;\nu_{k+1}(s)=\sum_{a\in\mathcal{A}}&space;\pi(a|s)\left(\mathcal{R}_s^a&plus;\gamma\sum_{s'\in\mathcal{S}}\mathcal{P}_{ss'}^a\nu_k(s')\right))
+![value iteration equation](https://latex.codecogs.com/png.image?\dpi{150}&space;v_{k+1}(s)&space;=&space;\sum_{a&space;\in&space;\mathcal{A}}&space;\pi(a|s)&space;\left(&space;\mathcal{R}_s^a&space;+&space;\gamma&space;\sum_{s'\in&space;\mathcal{S}}&space;\mathcal{P}_{ss'}^a&space;v_k(s')&space;\right)
+)
+
 
 
 **Policy Improvement**  
