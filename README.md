@@ -11,6 +11,31 @@ Implemented algorithms include:
 ![ex](assets/render_img.png)
 
 ---
+## Policy Iteration
+
+**Policy Evaluation**  
+\[
+V^\pi(s) = \sum_{a} \pi(a|s) \sum_{s'} P(s'|s,a) \left[ R(s,a,s') + \gamma V^\pi(s') \right]
+\]
+
+**Policy Improvement**  
+\[
+\pi_{\text{new}}(s) = \arg\max_a \sum_{s'} P(s'|s,a) \left[ R(s,a,s') + \gamma V^\pi(s') \right]
+\]
+
+---
+
+## Value Iteration
+
+\[
+V_{k+1}(s) = \max_a \sum_{s'} P(s'|s,a) \left[ R(s,a,s') + \gamma V_k(s') \right]
+\]
+
+\[
+\pi^*(s) = \arg\max_a \sum_{s'} P(s'|s,a) \left[ R(s,a,s') + \gamma V^*(s') \right]
+\]
+
+---
 
 ## 📁 Folder Structure
 ```bash
