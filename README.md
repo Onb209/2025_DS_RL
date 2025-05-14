@@ -45,7 +45,7 @@ python3.10 -m venv venv
 source venv/bin/activate
 
 # Install required packages
-pip install pygame numpy pillow
+pip install pygame numpy matplotlib pillow
 ```
 ---
 
@@ -71,6 +71,7 @@ You can visualize a learned policy using the render.py script:
 python render.py --policy {path_to_policy.pkl}
 ```
 This will render the agent's behavior following the trained policy in the GridWorld environment.
+![ex](assets/render_img.png)
 
 
 ---
