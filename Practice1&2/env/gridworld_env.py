@@ -6,18 +6,21 @@ from enum import Enum
 from PIL import Image
 import json
 
+# 타일 종류 정의
 class TileType(Enum):
     NORMAL = 0
     WALL = 1
     TRAP = 2
     GOAL = 3
 
+# 에이전트의 행동 정의
 class Action(Enum):
     UP = 0
     DOWN = 1
     LEFT = 2
     RIGHT = 3
 
+# 맵 JSON 파일 로드
 def load_map_from_file(file_name):
     file_path = 'env/maps/' + file_name
     print(file_path)
@@ -48,7 +51,7 @@ class GridWorldEnv:
 
         self.width = width
         self.height = height
-        self.agent_pos = [0, 0]
+        self.agent_pos = [0, 0] # 에이전트 초기 위치
         self.done = False
         self.cell_size = cell_size
 
@@ -94,13 +97,13 @@ class GridWorldEnv:
             if i == gif.n_frames:
                 break
 
-    def _place_special_tiles(self): # 맵 몇 개 고정해서 저장해놓고 불러오기 (5*5 2개 8*8)
+    def _place_special_tiles(self): 
         # random.seed(40)
         num_walls = (self.width * self.height) // 5
         num_traps = (self.width * self.height) // 10
         positions = [(i, j) for i in range(self.height) for j in range(self.width)]
         
-        # 시작 위치와 goal 위치는 제거
+        # 시작 위치와 goal 위치는 제외
         positions.remove((0, 0))
         goal_pos = (self.height - 1, self.width - 1)
         if goal_pos in positions:
@@ -118,11 +121,13 @@ class GridWorldEnv:
         # goal을 항상 오른쪽 하단에 배치
         self.grid[goal_pos[0]][goal_pos[1]] = TileType.GOAL
 
+    # 초기화
     def reset(self):
         self.agent_pos = [0, 0]
         self.done = False
         return self.agent_pos
 
+    # action 수행 후 pos, reward, done return
     def step(self, action):
         if self.done:
             return self.agent_pos, 0, self.done
@@ -149,7 +154,8 @@ class GridWorldEnv:
             reward = 100
             self.done = True
         return self.agent_pos, reward, self.done
-
+    
+    # 렌더링 함수
     def render(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

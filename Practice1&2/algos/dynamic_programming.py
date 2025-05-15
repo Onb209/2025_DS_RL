@@ -16,6 +16,7 @@ if os.path.exists("outputs"):
     shutil.rmtree("outputs")
 os.makedirs("outputs", exist_ok=True)
 
+# 매 iteration마다 value 값과 policy를 plot 
 def plot_value_and_policy(V, policy, grid, iteration, width, height, prefix='vi'):
     value_grid = np.full((height, width), np.nan)
     policy_grid = np.full((height, width), '', dtype=object)
@@ -56,6 +57,7 @@ def plot_value_and_policy(V, policy, grid, iteration, width, height, prefix='vi'
     plt.tight_layout()
     plt.savefig(f"outputs/{prefix}_iteration_{iteration}.png")
     plt.close()
+
 
 #-----Policy Iteration-----#
 def policy_evaluation(policy, mdp, gamma=0.95, theta=1e-4):
@@ -109,6 +111,7 @@ def policy_iteration(mdp, gamma=0.95):
     plot_value_and_policy(V, policy, mdp.env.grid, 'final', mdp.width, mdp.height, prefix='pi')
     return V, policy
 
+
 #-----Value Iteration-----#
 def value_iteration(mdp, gamma=0.95, theta=1e-4):
     V = {s: 0 for s in mdp.states} # 모든 상태의 value를 0으로 초기화
@@ -117,14 +120,14 @@ def value_iteration(mdp, gamma=0.95, theta=1e-4):
 
     while True:
         delta = 0 # value의 변화량을 저장
-        new_V = V.copy() # 이전 value와 비교
+        new_V = V.copy()
         for s in mdp.states:
             max_value = float('-inf')
             best_action = None
             for a in mdp.actions: # 모든 action a에 대해 
-                next_s, reward, done = mdp.get_transition(s, a) # 다음 상태와 보상을 얻음
-                value = reward + gamma * (0 if done else V[next_s]) # value 계산 후 max 값 찾음.
-                if value > max_value:
+                next_s, reward, done = mdp.get_transition(s, a) # 다음 state와 reward를 얻음
+                value = reward + gamma * (0 if done else V[next_s]) # value 계산 후 
+                if value > max_value: # max 값 찾음
                     max_value = value
                     best_action = a
             new_V[s] = max_value

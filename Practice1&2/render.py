@@ -15,8 +15,6 @@ def main():
     parser.add_argument('--policy', type=str, required=False, help="Path to policy .pkl file")
     parser.add_argument('--size', type=int, default=8)
     parser.add_argument('--random', action='store_true', help="Use randomly generated map")
-    # parser.add_argument('--width', type=int, default=6)
-    # parser.add_argument('--height', type=int, default=6)
     args = parser.parse_args()
 
     map_name = None
