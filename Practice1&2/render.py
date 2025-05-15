@@ -13,7 +13,7 @@ def load_policy(path):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--policy', type=str, required=False, help="Path to policy .pkl file")
-    parser.add_argument('--size', type=int, default=8)
+    parser.add_argument('--size', type=int, default=5)
     parser.add_argument('--random', action='store_true', help="Use randomly generated map")
     args = parser.parse_args()
 
