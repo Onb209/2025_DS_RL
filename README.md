@@ -11,6 +11,7 @@ This project has been tested on **Windows 10** and **Ubuntu 20.04**, using **Pyt
 
 ```bash
 # Clone the repository and navigate to the project folder
+git clone https://github.com/Onb209/2025_DS_RL.git
 cd {project_folder}
 
 # Create and activate a virtual environment
