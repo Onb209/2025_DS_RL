@@ -81,7 +81,7 @@ The GridWorld environment is a 2D grid-based world where each cell can be one of
 ## 📁 Folder Structure
 
 ```bash
-.
+Practice1&2
 ├── train.py               # Main training script
 ├── render.py              # Visualization script
 ├── checkpoints/           # Saved policy files
