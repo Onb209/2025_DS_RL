@@ -21,7 +21,7 @@ def main():
 
     map_name = None
     if not args.random:
-        map_name = f"saved_map_{args.size}.json"
+        map_name = f"map_{args.size}.json"
 
     env = GridWorldEnv(width=args.size, height=args.size, map_file=map_name)
     

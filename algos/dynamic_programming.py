@@ -54,7 +54,7 @@ def plot_value_and_policy(V, policy, grid, iteration, width, height, prefix='vi'
     plt.close()
 
 #-----Policy Iteration-----#
-def policy_evaluation(policy, mdp, gamma=0.99, theta=1e-4):
+def policy_evaluation(policy, mdp, gamma=0.95, theta=1e-4):
     V = {s: 0 for s in mdp.states} # 모든 state의 초기 value는 0
     while True:
         delta = 0
@@ -68,7 +68,7 @@ def policy_evaluation(policy, mdp, gamma=0.99, theta=1e-4):
             break
     return V
 
-def policy_improvement(V, mdp, gamma=0.99):
+def policy_improvement(V, mdp, gamma=0.95):
     policy_stable = True
     policy = {}
     for s in mdp.states:
@@ -83,7 +83,7 @@ def policy_improvement(V, mdp, gamma=0.99):
             policy_stable = False
     return policy, policy_stable
 
-def policy_iteration(mdp, gamma=0.99):
+def policy_iteration(mdp, gamma=0.95):
     policy = {s: np.random.choice(mdp.actions) for s in mdp.states} #초기 Policy는 random으로 선택
     iteration = 0
 
@@ -106,7 +106,7 @@ def policy_iteration(mdp, gamma=0.99):
     return V, policy
 
 #-----Value Iteration-----#
-def value_iteration(mdp, gamma=0.99, theta=1e-4):
+def value_iteration(mdp, gamma=0.95, theta=1e-4):
     V = {s: 0 for s in mdp.states} # 모든 상태의 value를 0으로 초기화
     policy = {s: Action.UP for s in mdp.states} # policy는 임의의 행동 (여기서는 up)으로 초기화
     iteration = 0
