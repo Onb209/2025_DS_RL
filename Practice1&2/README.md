@@ -15,12 +15,13 @@ Implemented algorithms include:
 ## 🚀 Training
 To train an RL agent, run the `train.py` script with the desired algorithm and optional arguments.
 ```bash
-python train.py --algo {algorithm} [--size SIZE] [--random] [--render]
+python train.py --algo {algorithm} [--size SIZE] [--map MAP_NAME] [--render]
 ```
 **Arguments**
 - --algo (str, required): Choose the learning algorithm.
   - Options: pi, vi, mc, td0, sarsa, q_learning
-- --size (int, optional): Width & Height of the GridWorld. Default is 6.
+- --size (int, optional): Width & Height of the GridWorld. Default is 6. (Ignored if --map is specified.)
+- --map (str, optional): Name of a custom map JSON file (e.g. custom_map.json).
 - --render (flag, optional): Render the environment during training.
 
 The trained policy will be saved in the checkpoints/ directory as a .pkl file.
@@ -33,8 +34,14 @@ The trained policy will be saved in the checkpoints/ directory as a .pkl file.
 ## 🖼️ Rendering a Trained Policy
 You can visualize a learned policy using the `render.py` script:
 ```bash
-python render.py --policy {path_to_policy.pkl} [--size SIZE] [--random]
+python render.py --policy {path_to_policy.pkl} [--size SIZE] [--map MAP_NAME] [--random]
 ```
+**Arguments**
+- --policy (str, optional): Path to a .pkl policy file. If omitted, agent acts randomly
+- --size (int, optional): Grid size (default 6). Ignored if --map is provided.
+- --map (str, optional): Path to a map JSON file (e.g. custom_map.json).
+- --random (flag): Use a randomly generated map instead of a fixed one.
+
 This will render the agent's behavior following the trained policy in the GridWorld environment.
 
 ![ex](assets/_img/render_img.png)

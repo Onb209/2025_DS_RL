@@ -20,11 +20,13 @@ def main():
     parser.add_argument('--algo', type=str, required=True,
                         choices=["vi", "pi", "mc", "td0", "sarsa", "q_learning"],
                         help="Choose algorithm: vi, pi")
-    parser.add_argument('--size', type=int, default=5)
+    parser.add_argument('--size', type=int, default=6)
     parser.add_argument('--render', action='store_true', help="Render environment during training")
+    parser.add_argument('--map', type=str, default=None,
+                        help="Path to map JSON file (optional, overrides --size)")
     args = parser.parse_args()
 
-    map_name = f"map_{args.size}.json"
+    map_name = args.map if args.map else f"map_{args.size}.json"
     env = GridWorldEnv(width=args.size, height=args.size, map_file=map_name)
 
     print(f"=== Running {args.algo.upper()} ===")

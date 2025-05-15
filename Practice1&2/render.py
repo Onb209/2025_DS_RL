@@ -13,13 +13,15 @@ def load_policy(path):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--policy', type=str, required=False, help="Path to policy .pkl file")
-    parser.add_argument('--size', type=int, default=5)
+    parser.add_argument('--size', type=int, default=6)
     parser.add_argument('--random', action='store_true', help="Use randomly generated map")
+    parser.add_argument('--map', type=str, default=None,
+                        help="Path to map JSON file (optional, overrides --size)")
     args = parser.parse_args()
 
     map_name = None
     if not args.random:
-        map_name = f"map_{args.size}.json"
+        map_name = args.map if args.map else f"map_{args.size}.json"
 
     env = GridWorldEnv(width=args.size, height=args.size, map_file=map_name)
     
