@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import os
+import shutil
 from env.gridworld_env import Action, TileType
 from env.gridworld_mdp import GridWorldMDP
 
@@ -10,6 +11,10 @@ ARROWS = {
     Action.LEFT: '←',
     Action.RIGHT: '→'
 }
+
+if os.path.exists("outputs"):
+    shutil.rmtree("outputs")
+os.makedirs("outputs", exist_ok=True)
 
 def plot_value_and_policy(V, policy, grid, iteration, width, height, prefix='vi'):
     value_grid = np.full((height, width), np.nan)
@@ -48,7 +53,6 @@ def plot_value_and_policy(V, policy, grid, iteration, width, height, prefix='vi'
         ax.set_yticklabels([])
         ax.grid(False)
 
-    os.makedirs("outputs", exist_ok=True)
     plt.tight_layout()
     plt.savefig(f"outputs/{prefix}_iteration_{iteration}.png")
     plt.close()
