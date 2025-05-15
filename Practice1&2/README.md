@@ -43,6 +43,7 @@ This will render the agent's behavior following the trained policy in the GridWo
 
 ## Algorithms
 <details><summary>Dynamic Programing</summary>
+
 ## Policy Iteration
 **Policy Evaluation**  
 ![ex](assets/_img/policy_eval.png)
