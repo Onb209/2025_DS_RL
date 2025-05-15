@@ -1,4 +1,5 @@
 # Practice 1 & 2
+It provides implementations and experiments for key RL methods in a discrete GridWorld environment.
 
 Implemented algorithms include:
 
