@@ -82,7 +82,7 @@ def policy_improvement(V, mdp, gamma=0.95):
         action_values = {}
         for a in mdp.actions: # 각 state에 대해 가능한 모든 action에 대해 q(s,a) 계산
             next_s, reward, done = mdp.get_transition(s, a)
-            action_values[a] = reward + gamma * V.get(next_s, 0) * (not done)
+            action_values[a] = reward + gamma * V.get(next_s, 0) * (not done) # Belman Equation
         best_action = max(action_values, key=action_values.get)
         policy[s] = best_action
         if old_action is not None and old_action != best_action:
@@ -126,7 +126,7 @@ def value_iteration(mdp, gamma=0.95, theta=1e-4):
             best_action = None
             for a in mdp.actions: # 모든 action a에 대해 
                 next_s, reward, done = mdp.get_transition(s, a) # 다음 state와 reward를 얻음
-                value = reward + gamma * (0 if done else V[next_s]) # value 계산 후 
+                value = reward + gamma * (0 if done else V[next_s]) # # Belman Equation. svalue 계산 후 
                 if value > max_value: # max 값 찾음
                     max_value = value
                     best_action = a
