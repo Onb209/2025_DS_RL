@@ -12,7 +12,7 @@ class GridWorldMDP:
         # 벽이 아닌 모든 타일을 state로 정의
         self.states = [(y, x) for y in range(self.height) for x in range(self.width)
                        if env.grid[y][x] != TileType.WALL]
-        print(self.states)
+        # print(self.states)
 
 
     # state transtion: (state, action) → (next_state, reward, done)
@@ -26,6 +26,8 @@ class GridWorldMDP:
         }[action]
 
         new_y, new_x = y + move[0], x + move[1]
+        
+        # 다음 위치가 맵 밖을 벗어났을 경우
         if not (0 <= new_y < self.height and 0 <= new_x < self.width):
             return state, -1, False
 

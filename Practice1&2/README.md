@@ -19,7 +19,7 @@ python train.py --algo {algorithm} [--size SIZE] [--map MAP_NAME] [--render]
 ```
 **Arguments**
 - --algo (str, required): Choose the learning algorithm.
-  - Options: pi, vi, mc, td0, sarsa, q_learning
+  - Options: pi, vi, mf_pred, mc, sarsa, q_learning
 - --size (int, optional): Width & Height of the GridWorld. Default is 6. (Ignored if --map is specified.)
 - --map (str, optional): Name of a custom map JSON file (e.g. custom_map.json).
 - --render (flag, optional): Render the environment during training.

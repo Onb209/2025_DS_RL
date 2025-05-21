@@ -45,8 +45,8 @@ class GridWorldEnv:
         if map_file:
             width, height, self.grid = load_map_from_file(map_file)
         else:
-            width = max(5, min(width, 10))
-            height = max(5, min(height, 10))
+            width = max(5, min(width, 15))
+            height = max(5, min(height, 15))
             self.grid = np.full((height, width), TileType.NORMAL)
 
         self.width = width

@@ -6,7 +6,7 @@ from env.gridworld_mdp import GridWorldMDP
 # 알고리즘 로드
 from algos.dynamic_programming import policy_iteration, value_iteration
 from algos.monte_carlo import monte_carlo
-# from algos.td0 import td0
+from algos.model_free_prediction import run_prediction_experiment
 from algos.sarsa import sarsa
 from algos.q_learning import q_learning
 
@@ -18,7 +18,7 @@ def save_policy(pi, filename):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--algo', type=str, required=True,
-                        choices=["vi", "pi", "mc", "td0", "sarsa", "q_learning"],
+                        choices=["vi", "pi", "mf_pred", "mc", "sarsa", "q_learning"],
                         help="Choose algorithm: vi, pi")
     parser.add_argument('--size', type=int, default=6)
     parser.add_argument('--render', action='store_true', help="Render environment during training")
@@ -37,13 +37,16 @@ def main():
             _, pi = value_iteration(mdp)
         else:
             _, pi = policy_iteration(mdp)
+        
     else:
         # model-free methods
-        if args.algo == 'mc':
-            _, pi = monte_carlo(env, render=args.render)
-        # elif args.algo == 'td0':
-        #     td0(env, render=args.render)
-        #     return
+        mdp = GridWorldMDP(env)
+        if args.algo == 'mf_pred':
+            run_prediction_experiment(env)
+            return
+        elif args.algo == 'mc':
+            _, pi = monte_carlo(env)
+            return
         elif args.algo == 'sarsa':
             _, pi = sarsa(env, render=args.render)
         elif args.algo == 'q_learning':
