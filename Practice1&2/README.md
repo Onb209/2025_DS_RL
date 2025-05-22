@@ -30,6 +30,7 @@ The trained policy will be saved in the checkpoints/ directory as a .pkl file.
 ![Output](assets/_img/animation.gif)
 
 **Cliff Walking**
+
 The map for the Cliff Walk environment is located at:  
 `env/maps/cliff_walk.json`
 
