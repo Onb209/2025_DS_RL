@@ -123,7 +123,7 @@ class GridWorldEnv:
 
     # 초기화
     def reset(self):
-        self.agent_pos = [3, 0]
+        self.agent_pos = [0, 0]
         self.done = False
         return self.agent_pos
 

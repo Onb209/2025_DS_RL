@@ -28,6 +28,31 @@ The trained policy will be saved in the checkpoints/ directory as a .pkl file.
 
 
 ![Output](assets/_img/animation.gif)
+
+**Cliff Walking**
+The map for the Cliff Walk environment is located at:  
+`env/maps/cliff_walk.json`
+
+To use this map, make the following modification in the `gridworld_env.py` file:
+
+In both the `__init__()` and `reset()` functions, change:
+
+```python
+self.agent_pos = [0, 0]
+```
+to
+```python
+self.agent_pos = [3, 0]
+```
+Then run the following commands:
+```bash
+# Train with SARSA
+python train.py --algo sarsa --map cliff_walk.json
+
+# Train with Q-Learning
+python train.py --algo q_learning --map cliff_walk.json
+```
+
 ![Output](assets/_img/sarsa.gif)
 ![Output](assets/_img/q_learning.gif)
 
@@ -47,6 +72,19 @@ python render.py --policy {path_to_policy.pkl} [--size SIZE] [--map MAP_NAME] [-
 This will render the agent's behavior following the trained policy in the GridWorld environment.
 
 ![ex](assets/_img/render_img.png)
+
+**Cliff Walking**
+The map for the Cliff Walk environment is located at:  
+`env/maps/cliff_walk.json`
+
+Run the following commands:
+```bash
+# Test with SARSA
+python render.py --policy checkpoints/policy_sarsa.pkl --map cliff_walk.json
+
+# Test with Q-Learning
+python render.py --policy checkpoints/policy_q_learning.pkl --map cliff_walk.json
+```
 ![Output](assets/_img/sarsa_test.gif)
 ![Output](assets/_img/q_learning_test.gif)
 
