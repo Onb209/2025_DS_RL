@@ -53,8 +53,11 @@ python train.py --algo sarsa --map cliff_walk.json
 # Train with Q-Learning
 python train.py --algo q_learning --map cliff_walk.json
 ```
+**SARSA:**
 
 ![Output](assets/_img/sarsa.gif)
+**Q-Learing:**
+
 ![Output](assets/_img/q_learning.gif)
 
 ---
@@ -87,7 +90,11 @@ python render.py --policy checkpoints/policy_sarsa.pkl --map cliff_walk.json
 # Test with Q-Learning
 python render.py --policy checkpoints/policy_q_learning.pkl --map cliff_walk.json
 ```
+**SARSA:**
+
 ![Output](assets/_img/sarsa_test.gif)
+**Q-Learing:**
+
 ![Output](assets/_img/q_learning_test.gif)
 
 ---
