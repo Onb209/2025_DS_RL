@@ -94,6 +94,7 @@ python render.py --policy checkpoints/policy_q_learning.pkl --map cliff_walk.jso
 **SARSA:**
 
 ![Output](assets/_img/sarsa_test.gif)
+
 **Q-Learing:**
 
 ![Output](assets/_img/q_learning_test.gif)
