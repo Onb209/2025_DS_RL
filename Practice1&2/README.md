@@ -56,6 +56,7 @@ python train.py --algo q_learning --map cliff_walk.json
 **SARSA:**
 
 ![Output](assets/_img/sarsa.gif)
+
 **Q-Learing:**
 
 ![Output](assets/_img/q_learning.gif)
