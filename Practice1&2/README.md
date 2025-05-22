@@ -74,6 +74,7 @@ This will render the agent's behavior following the trained policy in the GridWo
 ![ex](assets/_img/render_img.png)
 
 **Cliff Walking**
+
 The map for the Cliff Walk environment is located at:  
 `env/maps/cliff_walk.json`
 
