@@ -51,7 +51,7 @@ class GridWorldEnv:
 
         self.width = width
         self.height = height
-        self.agent_pos = [0, 0] # 에이전트 초기 위치
+        self.agent_pos = [3, 0] # 에이전트 초기 위치
         self.done = False
         self.cell_size = cell_size
 
@@ -123,7 +123,7 @@ class GridWorldEnv:
 
     # 초기화
     def reset(self):
-        self.agent_pos = [0, 0]
+        self.agent_pos = [3, 0]
         self.done = False
         return self.agent_pos
 

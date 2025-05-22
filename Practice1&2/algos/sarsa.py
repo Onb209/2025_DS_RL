@@ -6,8 +6,7 @@ from tqdm import tqdm
 from algos.dynamic_programming import plot_value_and_policy
 import matplotlib.pyplot as plt
 
-
-def sarsa(env, episodes=500, alpha=0.1, gamma=0.99, epsilon = 0.1, render=False, log_interval=100):
+def sarsa(env, episodes=500, alpha=0.1, gamma=0.99, epsilon = 0.05, render=False, log_interval=100):
     # Q-value table 초기화: 모든 state-action 쌍에 대해 Q값을 0으로 초기화
     Q = defaultdict(lambda: {a: 0.0 for a in Action})
 
@@ -47,10 +46,9 @@ def sarsa(env, episodes=500, alpha=0.1, gamma=0.99, epsilon = 0.1, render=False,
                 next_action = max(Q[next_state], key=Q[next_state].get)
 
             # SARSA update
-            td_target = reward + gamma * Q[next_state][next_action]
-            Q[state][action] += alpha * (
-                td_target - Q[state][action]
-            )
+            # next state에서 ε-greedy로 선택된 action의 Q값
+            td_target = reward + gamma * Q[next_state][next_action] 
+            Q[state][action] += alpha * (td_target - Q[state][action])
 
             state, action = next_state, next_action
 

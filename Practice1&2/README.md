@@ -28,6 +28,8 @@ The trained policy will be saved in the checkpoints/ directory as a .pkl file.
 
 
 ![Output](assets/_img/animation.gif)
+![Output](assets/_img/sarsa.gif)
+![Output](assets/_img/q_learning.gif)
 
 ---
 
@@ -45,6 +47,8 @@ python render.py --policy {path_to_policy.pkl} [--size SIZE] [--map MAP_NAME] [-
 This will render the agent's behavior following the trained policy in the GridWorld environment.
 
 ![ex](assets/_img/render_img.png)
+![Output](assets/_img/sarsa_test.gif)
+![Output](assets/_img/q_learning_test.gif)
 
 ---
 

@@ -7,7 +7,7 @@ from tqdm import tqdm
 from algos.dynamic_programming import plot_value_and_policy
 
 
-def q_learning(env, episodes=500, alpha=0.1, gamma=0.99, epsilon=0.1, render=False, log_interval=100):
+def q_learning(env, episodes=500, alpha=0.1, gamma=0.99, epsilon=0.05, render=False, log_interval=100):
     # Q table 초기화
     Q = defaultdict(lambda: {a: 0.0 for a in Action})
     
@@ -38,6 +38,9 @@ def q_learning(env, episodes=500, alpha=0.1, gamma=0.99, epsilon=0.1, render=Fal
             next_state, reward, done = env.step(action.value)
             next_state = tuple(next_state)
 
+            # next_state에서 가능한 모든 action 중 가장 Q값이 큰 것을 고름
+            # 가장 좋은 action을 했을 경우의 미래 기대값을 가정하는 것. 실제로 어떤 action을 할지와는 상관없이, 가장 좋은 걸 했다고 가정
+            # exploration은 했지만, 학습은 항상 이상적인 행동 기준으로
             max_next = max(Q[next_state].values())
             Q[state][action] += alpha * (reward + gamma * max_next - Q[state][action]) # Q-learning update
             
@@ -64,14 +67,14 @@ def q_learning(env, episodes=500, alpha=0.1, gamma=0.99, epsilon=0.1, render=Fal
 
     policy = {state: max(actions, key=actions.get) for state, actions in Q.items()}
 
-    plt.figure()
-    plt.plot(reward_history)
-    plt.xlabel('Episode')
-    plt.ylabel('Total Reward')
-    plt.title('Q-Learning - Episode Rewards')
-    plt.grid(True)
-    plt.savefig('outputs/q_learning_rewards.png')
-    plt.close()
+    # plt.figure()
+    # plt.plot(reward_history)
+    # plt.xlabel('Episode')
+    # plt.ylabel('Total Reward')
+    # plt.title('Q-Learning - Episode Rewards')
+    # plt.grid(True)
+    # plt.savefig('outputs/q_learning_rewards.png')
+    # plt.close()
 
     return Q, policy
 
