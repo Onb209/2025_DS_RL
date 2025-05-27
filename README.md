@@ -31,8 +31,7 @@ pip install pygame numpy matplotlib pillow gymnasium torch tqdm
 
 ## 📚 Practices
 
-- [Practice 1 & 2](./Practice1&2/README.md)
-- [Practice 3](./Practice3/README.md)
-- [Practice 4](./Practice4/README.md)
+- [Practice 1 & 2](./Practice1_2/README.md)
+- [Practice 3 & 4](./Practice3_4/README.md)
 
 ---
