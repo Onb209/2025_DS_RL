@@ -1,0 +1,14 @@
+env:
+  action_scale: 500.0
+policy_kwargs:
+  net_arch:
+  - 256
+  - 128
+  std_init: 0.2
+ppo_kwargs:
+  batch_size: 128
+  gamma: 0.99
+  learning_rate: 0.0003
+  n_epochs: 4
+  n_steps: 2048
+  verbose: 1

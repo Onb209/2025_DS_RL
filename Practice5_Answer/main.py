@@ -47,16 +47,17 @@ class WorldEnv(gym.Env):
 
         self.world = world
         self.action_space = spaces.Box(low=-500.0, high=500.0, shape=(2,), dtype=np.float32)
-        # self.action_space = spaces.Box(low=-1.0, high=1.0, shape=(2,), dtype=np.float32)
 
         # ------------------------------------------------------------
         # TODO : Modify the shape value to match the observation size.
         # ------------------------------------------------------------
-        self.observation_space = spaces.Box(low=-100.0, high=100.0, shape=(2,), dtype=np.float32)
+        self.observation_space = spaces.Box(low=-100.0, high=100.0, shape=(147,), dtype=np.float32)
+        
         self.max_epi_steps = 300
         self.cur_epi_step = 0
 
         cube1_center = self.compute_center_pos(0)
+        # 이전 timestep에서의 Cube1의 중심 좌표
         self.prev_cube1_center = cube1_center.copy()
 
         self.acc_reward = 0.0
@@ -64,6 +65,7 @@ class WorldEnv(gym.Env):
     def reset(self, seed=None, options=None):
         self.world.reset()
         cube1_center = self.compute_center_pos(0)
+        # 이전 timestep에서의 Cube1의 중심 좌표
         self.prev_cube1_center = cube1_center.copy()
         self.acc_reward = 0.0
 
@@ -78,34 +80,37 @@ class WorldEnv(gym.Env):
     
     def get_reward(self):
         reward = 0
+
         # ---------------------------------
-        # Implement reward function
+        # Given
         # ---------------------------------
         # Cube1의 중심 좌표
         cube1_center = self.compute_center_pos(0)
-        # Cube1 중심 좌표의 x축 값
-        reward = cube1_center[0]
-        # 누적 reward 저장 용도
-        self.world.renderer.acc_reward += reward
+        # # Cube1 중심 좌표의 x축 값
+        # reward = cube1_center[0]
 
         # ---------------------------------
-        # HINT 1: Cube1의 x축 방향 이동 거리 (현재 위치 - 이전 위치)
+        # for Step 1
         # ---------------------------------
-        # cube1_delta_x = cube1_center[0] - self.prev_cube1_center[0]
+        # Cube1의 x축 방향 이동 거리 (현재 위치 - 이전 위치)
+        cube1_delta_x = cube1_center[0] - self.prev_cube1_center[0]
+        reward = cube1_delta_x
+        
+        # 누적 reward 저장 용도
+        self.world.renderer.acc_reward += reward
 
         return reward
     
     def is_terminal_state(self):
         cube1_center = self.compute_center_pos(0)
         # ---------------------------------
-        # TODO: Implement terminal state condition
+        # Given
         # ---------------------------------
-        # ---------------------------------
-        # HINT 3: Cube1의 높이 제한
-        # ---------------------------------
-        # cube1_center[1] < 2.5
         return False
-        
+        # ---------------------------------
+        # for Step 3
+        # ---------------------------------
+        # return cube1_center[1] < 2.5
 
     def step(self, action):
         self.world.step_(self.action_scale*action)
@@ -116,6 +121,7 @@ class WorldEnv(gym.Env):
         self.acc_reward += reward
 
         cube1_center = self.compute_center_pos(0)
+        # 이전 timestep 에서의 Cube1의 중심 좌표
         self.prev_cube1_center = cube1_center.copy()
 
         # trucated : check timeout
@@ -127,35 +133,53 @@ class WorldEnv(gym.Env):
 
     def get_obs(self):
         # ---------------------------------
-        # HINT 2: Cube의 위치와 속도 계산
+        # Given
         # ---------------------------------
-        # Cube1 객체 및 중심 좌표 계산
-        # cube1 = self.world.get_objects()[0]
-        # cube1_center = cube1.curr_pos.mean(axis=-2)
-        #
-        # Cube3 객체 및 중심 좌표 계산
-        # cube3 = self.world.get_objects()[2]
-        # cube3_center = cube3.curr_pos.mean(axis=-2)
-        #
-        # Cube1 중심 기준 상대 위치 계산 후 1차원 배열로 변환
-        # cube1_relative_pos = (cube1.curr_pos - cube1_center).flatten()
-        # cube2_relative_pos = (cube2.curr_pos - cube1_center).flatten()
-        # cube3_relative_pos = (cube3.curr_pos - cube1_center).flatten()
-        #
-        # Cube1 속도를 1차원 배열로 변환
-        # cube1_vel = cube1.vel.flatten()
-
-        # ---------------------------------
-        # TODO : Implement observation function
-        # ---------------------------------
-        # 큐브 1의 중심 좌표
+        #큐브 1의 중심 좌표
         cube1_center = self.compute_center_pos(0)
         obs = [cube1_center[0]]
         obs = np.append(obs, [cube1_center[1]])
 
+        # ---------------------------------
+        # for Step 2
+        # ---------------------------------
+
+        # Cube1의 x축 방향 이동 거리 (현재 위치 - 이전 위치)
+        cube1_delta_x = cube1_center[0]- self.prev_cube1_center[0] #, cube1_center[1], cube2_center[1], cube3_center[1]]
+        obs = np.append(obs, cube1_delta_x)
+        
+        # Cube1의 객체를 가져옴
+        cube1 = self.world.get_objects()[0]
+
+        # Cube2의 객체를 가져옴
+        cube2 = self.world.get_objects()[1]
+        # Cube2의 중심 좌표를 계산 (모든 점 위치의 평균)
+        cube2_center = cube2.curr_pos.mean(axis=-2)
+
+        # Cube3의 객체를 가져옴
+        cube3 = self.world.get_objects()[2]
+        # Cube3의 중심 좌표를 계산 (모든 점 위치의 평균)
+        cube3_center = cube3.curr_pos.mean(axis=-2)
+
+        # 각 큐브의 점 위치를 Cube1 중심 기준으로 상대 좌표로 변환하고 1차원 배열로 평탄화
+        cube1_relative_pos = (cube1.curr_pos-cube1_center).flatten()
+        cube2_relative_pos = (cube2.curr_pos-cube1_center).flatten()
+        cube3_relative_pos = (cube3.curr_pos-cube1_center).flatten()
+
+        obs = np.append(obs, cube1_relative_pos)
+        obs = np.append(obs, cube2_relative_pos)
+        obs = np.append(obs, cube3_relative_pos)
+
+        # Cube의 속도를 1차원 배열로 변환
+        cube1_vel = cube1.vel.flatten()
+        cube2_vel = cube1.vel.flatten()
+        cube3_vel = cube1.vel.flatten()
+
+        obs = np.append(obs, cube1_vel)
+        obs = np.append(obs, cube2_vel)
+        obs = np.append(obs, cube3_vel)
+
         return np.array(obs, dtype=np.float32)
-
-
 
 def test(env, model, eval_mode=False):
     world = env.world
@@ -232,6 +256,8 @@ def test(env, model, eval_mode=False):
 
         pygame.quit()
 
+
+
 def train(env, model, exp_name):
 
     if not os.path.exists('./logs/'+exp_name):
@@ -259,8 +285,10 @@ def main():
     
     parser.add_argument("-n", "--name", type=str, default="",
                         help="specify the name of the experiment")
+    
     parser.add_argument("--eval", action="store_true",
                     help="evaluate model over multiple episodes and print success rates")
+
 
     args = parser.parse_args()
 
@@ -277,7 +305,7 @@ def main():
     # The value on the side is the default value when the 'key' does not exit.
     # You should change the config.yml file to make any difference.
     policy_kwargs = dict(
-        log_std_init=np.log(cfg_policy_kwargs.get("std_init", 0.5)),
+        log_std_init=np.log(cfg_policy_kwargs.get("std_init", 0.2)),
         net_arch=cfg_policy_kwargs.get("net_arch", [256, 128]),
     )
 
@@ -323,3 +351,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
