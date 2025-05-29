@@ -13,7 +13,7 @@ To train an RL agent, run the `train.py` script with the desired algorithm and o
 python train_r.py [--map MAP_NAME] [--render]
 ```
 **Arguments**
-- --map (str, optional): Name of a custom map JSON file (e.g. custom_map.json).
+ --map (str, optional): Name of a custom map JSON file (e.g. custom_map.json).
 - --render (flag, optional): Render the environment during training.
 
 The trained policy will be saved in the `checkpoints/{algo}.pth` directory as a .pkl file.
@@ -33,8 +33,7 @@ TensorBoard logs include:
 
 ## 🔍 Testing / Rendering
 valuate or visualize a trained policy:
-```bash
-python test_r.py \
+## 🔍 Testing / Rendering
   --map MAP_NAME.yaml \
   [--render]
 ```

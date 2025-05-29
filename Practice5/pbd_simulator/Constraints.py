@@ -27,7 +27,7 @@ class DistanceConstraint(Constraint):
             
     def solve(self, h):
         # --------------------------------------------------
-        # Distance Constraints
+        # TODO (3) : Distance Constraints
         # --------------------------------------------------
         x1, x2 = self.body1.curr_pos[self.id1], self.body2.curr_pos[self.id2]
         normal = x1 - x2
@@ -66,7 +66,7 @@ class GroundCollisionConstraint(Constraint):
         
     def solve(self, h):
         # --------------------------------------------------
-        # Ground Collision Constraints
+        # TODO (4-1) : Ground Collision Constraints
         # --------------------------------------------------
         x = self.body.curr_pos[self.i]
         
@@ -86,7 +86,7 @@ class GroundCollisionConstraint(Constraint):
     
     def solve_velocity(self):
         # --------------------------------------------------
-        # Friction and Restitution
+        # TODO (4-2) : Friction and Restitution
         # --------------------------------------------------
         v = self.body.vel[self.i]
         k_f = self.body.friction
@@ -115,7 +115,7 @@ class AttachmentConstraint(Constraint):
         if self.anchor is None:
             return
         # --------------------------------------------------
-        # Attach Constraints
+        # (2) Attach Constraints
         # - C(x) = ||x - anchor||
         # - dC(x) = (x - anchor) / ||x - anchor||
         # --------------------------------------------------        
@@ -156,7 +156,7 @@ class MinDistanceConstraint(Constraint):
             
     def solve(self, h):
         # --------------------------------------------------
-        # Distance Constraints
+        # TODO (3) : Distance Constraints
         # --------------------------------------------------
         x1, x2 = self.body1.curr_pos[self.id1], self.body2.curr_pos[self.id2]
         normal = x1 - x2

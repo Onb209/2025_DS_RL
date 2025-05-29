@@ -145,6 +145,11 @@ class PBDSimulation:
         for constraint in self.constraints:
             constraint.reset()
     
+    
+    # ==========================================================
+    # ================= FILL IN THE CODE BELOW =================
+    # ==========================================================
+    
     def step(self): 
         collisions = self.check_collisions()
         

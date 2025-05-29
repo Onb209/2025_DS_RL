@@ -52,12 +52,10 @@ class WorldEnv(gym.Env):
         # TODO : Modify the shape value to match the observation size.
         # ------------------------------------------------------------
         self.observation_space = spaces.Box(low=-100.0, high=100.0, shape=(2,), dtype=np.float32)
-        
         self.max_epi_steps = 300
         self.cur_epi_step = 0
 
         cube1_center = self.compute_center_pos(0)
-        # 이전 timestep에서의 Cube1의 중심 좌표
         self.prev_cube1_center = cube1_center.copy()
 
         self.acc_reward = 0.0
@@ -65,7 +63,6 @@ class WorldEnv(gym.Env):
     def reset(self, seed=None, options=None):
         self.world.reset()
         cube1_center = self.compute_center_pos(0)
-        # 이전 timestep에서의 Cube1의 중심 좌표
         self.prev_cube1_center = cube1_center.copy()
         self.acc_reward = 0.0
 
@@ -87,10 +84,8 @@ class WorldEnv(gym.Env):
         cube1_center = self.compute_center_pos(0)
         # Cube1 중심 좌표의 x축 값
         reward = cube1_center[0]
-
         # 누적 reward 저장 용도
         self.world.renderer.acc_reward += reward
-
         return reward
     
     def is_terminal_state(self):
@@ -107,7 +102,6 @@ class WorldEnv(gym.Env):
         self.acc_reward += reward
 
         cube1_center = self.compute_center_pos(0)
-        # 이전 timestep 에서의 Cube1의 중심 좌표
         self.prev_cube1_center = cube1_center.copy()
 
         # trucated : check timeout
@@ -146,6 +140,8 @@ class WorldEnv(gym.Env):
         obs = np.append(obs, [cube1_center[1]])
 
         return np.array(obs, dtype=np.float32)
+
+
 
 def test(env, model, eval_mode=False, num_episodes=10):
     world = env.world
@@ -230,8 +226,6 @@ def test(env, model, eval_mode=False, num_episodes=10):
 
         pygame.quit()
 
-
-
 def train(env, model, exp_name):
 
     if not os.path.exists('./logs/'+exp_name):
@@ -259,10 +253,8 @@ def main():
     
     parser.add_argument("-n", "--name", type=str, default="",
                         help="specify the name of the experiment")
-    
     parser.add_argument("--eval", action="store_true",
                     help="evaluate model over multiple episodes and print success rates")
-
 
     args = parser.parse_args()
 
@@ -325,5 +317,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-

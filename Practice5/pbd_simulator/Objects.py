@@ -40,7 +40,7 @@ def generate_cube(width, height, depth):
         [4, 5], [5, 6], [6, 7], [7, 4], # Front face
         [0, 4], [1, 5], [2, 6], [3, 7], # Connect front and back faces
         # -----------------------------------------------------
-        # Need to Add Additional Edges to make rigid
+        # TODO (3) : Need to Add Additional Edges to make rigid
         #    3-------2
         #   /|      /|
         #  7-------6 |      <- Back face (0,1,2,3)
