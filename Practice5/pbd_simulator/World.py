@@ -99,14 +99,14 @@ def initWorld(world, train_mode=False):
     # -------------------------------
     # d.  Joint limit constraint
     # #--------------------------------
-    # world.simulation.add_constraint(MinDistanceConstraint(cube1, 6, cube2, 5, min_length=3.0, compliance=hinge_comp))
-    # world.simulation.add_constraint(MinDistanceConstraint(cube1, 2, cube2, 1, min_length=3.0, compliance=hinge_comp))
+    world.simulation.add_constraint(MinDistanceConstraint(cube1, 6, cube2, 5, min_length=3.0, compliance=hinge_comp))
+    world.simulation.add_constraint(MinDistanceConstraint(cube1, 2, cube2, 1, min_length=3.0, compliance=hinge_comp))
     
-    # world.simulation.add_constraint(MinDistanceConstraint(cube2, 1, cube3, 0, min_length=1.0, compliance=hinge_comp))
-    # world.simulation.add_constraint(MinDistanceConstraint(cube2, 5, cube3, 4, min_length=1.0, compliance=hinge_comp))
+    world.simulation.add_constraint(MinDistanceConstraint(cube2, 1, cube3, 0, min_length=1.0, compliance=hinge_comp))
+    world.simulation.add_constraint(MinDistanceConstraint(cube2, 5, cube3, 4, min_length=1.0, compliance=hinge_comp))
 
-    # world.simulation.add_constraint(MinDistanceConstraint(cube2, 7, cube3, 4, min_length=1.0, compliance=hinge_comp))
-    # world.simulation.add_constraint(MinDistanceConstraint(cube2, 3, cube3, 0, min_length=1.0, compliance=hinge_comp))
+    world.simulation.add_constraint(MinDistanceConstraint(cube2, 7, cube3, 4, min_length=1.0, compliance=hinge_comp))
+    world.simulation.add_constraint(MinDistanceConstraint(cube2, 3, cube3, 0, min_length=1.0, compliance=hinge_comp))
 
     return world
 

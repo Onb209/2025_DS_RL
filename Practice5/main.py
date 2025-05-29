@@ -47,6 +47,7 @@ class WorldEnv(gym.Env):
 
         self.world = world
         self.action_space = spaces.Box(low=-500.0, high=500.0, shape=(2,), dtype=np.float32)
+        # self.action_space = spaces.Box(low=-1.0, high=1.0, shape=(2,), dtype=np.float32)
 
         # ------------------------------------------------------------
         # TODO : Modify the shape value to match the observation size.
