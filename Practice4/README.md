@@ -3,6 +3,8 @@ This repository contains implementations and experiments for three core RL algor
 
 Implemented algorithms include:
 
+- **Deep SARSA** (on-policy value-based)  
+- **DQN** (off-policy value-based with target network and replay)  
 - **REINFORCE** (Monte-Carlo policy gradient for continuous actions)
  
 ---
@@ -10,10 +12,12 @@ Implemented algorithms include:
 ## 🚀 Training
 To train an RL agent, run the `train.py` script with the desired algorithm and optional arguments.
 ```bash
-python train_r.py [--map MAP_NAME] [--render]
+python train.py --algo {algorithm} [--map MAP_NAME] [--render]
 ```
 **Arguments**
- --map (str, optional): Name of a custom map JSON file (e.g. custom_map.json).
+- --algo (str, required): Choose the learning algorithm.
+  - Options: deepsarsa, dqn, reinforce
+- --map (str, optional): Name of a custom map JSON file (e.g. custom_map.json).
 - --render (flag, optional): Render the environment during training.
 
 The trained policy will be saved in the `checkpoints/{algo}.pth` directory as a .pkl file.
@@ -33,7 +37,9 @@ TensorBoard logs include:
 
 ## 🔍 Testing / Rendering
 valuate or visualize a trained policy:
-## 🔍 Testing / Rendering
+```bash
+python test.py \
+  --algo {deepsarsa|dqn|reinforce} \
   --map MAP_NAME.yaml \
   [--render]
 ```
@@ -70,23 +76,22 @@ Each cell in the map can be one of:
 ## 📁 Folder Structure
 
 ```bash
-Practice4/
+Practice3_4/
 ├── algos/                # Algorithm implementations
-│   ├── td_lambda.py
+│   ├── deepsarsa.py
+│   ├── dqn.py
 │   └── reinforce.py
 ├── configs/              # Map configuration files (YAML)
-│   ├── map0.yaml
 │   ├── map1.yaml
-│   ├── hw_map1.yaml
-│   ├── hw_map2.yaml
-│   └── hw_map3.yaml
+│   └── map2.yaml
 ├── env/                  # GridWorld environments
+│   ├── gridworld_c1.py
 │   └── gridworld_c2.py
 ├── checkpoints/          # Saved models (*.pth)
 ├── outputs/              # Generated plots (heatmaps, policy arrows)
 ├── runs/                 # TensorBoard logs
-├── train_r.py            # Unified training script
-├── test_r.py             # Policy evaluation / rendering script
+├── train.py              # Unified training script
+├── test.py               # Policy evaluation / rendering script
 └── README.md             # This file
 
 ```
