@@ -144,55 +144,47 @@ class WorldEnv(gym.Env):
 
 
 
-def test(env, model, eval_mode=False, num_episodes=10):
+def test(env, model, eval_mode=False):
     world = env.world
 
-    # task 성공률 출력 모드
     if eval_mode:
-        success_task1 = 0
-        success_task2 = 0
-        success_task3 = 0
+        # 에피소드 1개만 실행
+        obs, _ = env.reset(seed=0)
+        world.renderer.acc_reward = 0
+        cube1_z_okay = True
 
-        for ep in range(num_episodes):
-            obs, _ = env.reset()
-            world.renderer.acc_reward = 0
-            cube1_z_okay = True
+        sim_time = 0.0
+        max_sim_time = 5.0
+        SIM_TIME_STEP = world.simulation.time_step
 
-            episode_done = False
-            sim_time = 0.0
-            max_sim_time = 5.0
-            SIM_TIME_STEP = world.simulation.time_step
+        while sim_time < max_sim_time:
+            action, _ = model.predict(obs, deterministic=True)
 
-            while not episode_done and sim_time < max_sim_time:
-                action, _ = model.predict(obs, deterministic=True)
-
-                world.handle_events()
-                if USER_TORQUE_MODE:
-                    obs, reward, terminated, truncated, info = env.step(world.renderer.user_torque / 500.0)
-                else:
-                    obs, reward, terminated, truncated, info = env.step(action)
-
-                cube1_center = env.compute_center_pos(0)
-                if cube1_center[1] < 2.5:
-                    cube1_z_okay = False
-
-                sim_time += SIM_TIME_STEP
-                episode_done = terminated or truncated
-
-                world.render()
+            world.handle_events()
+            if USER_TORQUE_MODE:
+                obs, reward, terminated, truncated, info = env.step(world.renderer.user_torque / 500.0)
+            else:
+                obs, reward, terminated, truncated, info = env.step(action)
 
             cube1_center = env.compute_center_pos(0)
-            if cube1_center[0] > 5:
-                success_task1 += 1
-            if cube1_center[0] > 20:
-                success_task2 += 1
-            if cube1_center[0] > 20 and cube1_z_okay:
-                success_task3 += 1
+            if cube1_center[1] < 2.5:
+                cube1_z_okay = False
 
-        print(f"\nEvaluation over {num_episodes} episodes:")
-        print(f"Task 1 Success Rate: {success_task1 / num_episodes * 100:.2f}% (x > 5 within 5s)")
-        print(f"Task 2 Success Rate: {success_task2 / num_episodes * 100:.2f}% (x > 20 within 5s)")
-        print(f"Task 3 Success Rate: {success_task3 / num_episodes * 100:.2f}% (x > 20 and z ≥ 2.5 within 5s)")
+            sim_time += SIM_TIME_STEP
+            if terminated or truncated:
+                break
+
+            world.render()
+
+        cube1_center = env.compute_center_pos(0)
+        success_task1 = cube1_center[0] > 5
+        success_task2 = cube1_center[0] > 20
+        success_task3 = cube1_center[0] > 20 and cube1_z_okay
+
+        print(f"\nEvaluation result (1 episode):")
+        print(f"Task 1: {'Success' if success_task1 else 'Fail'} (x > 5 within 5s)")
+        print(f"Task 2: {'Success' if success_task2 else 'Fail'} (x > 20 within 5s)")
+        print(f"Task 3: {'Success' if success_task3 else 'Fail'} (x > 20 and z ≥ 2.5 within 5s)")
 
         pygame.quit()
 

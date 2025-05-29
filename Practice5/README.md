@@ -18,7 +18,7 @@ python main.py -l {path_to_saved_model} [--eval]
 ```
 **Arguments**
 - -l, --load: Path to a saved model file (e.g., .zip) to load and run in test mode.
-- --eval: Evaluate the model over multiple episodes (default: 10) and print task-specific success rates.
+- --eval: Evaluate the model and print task-specific success rates.
 
 ---
 
