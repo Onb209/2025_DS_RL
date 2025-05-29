@@ -26,12 +26,15 @@ source venv/bin/activate
 
 # Install required packages
 pip install pygame numpy matplotlib pillow gymnasium torch tqdm
+pip install tensorboard pyyaml
+pip install stable_baselines3 scipy PyOpenGL
 ```
 ---
 
 ## 📚 Practices
 
 - [Practice 1 & 2](./Practice1_2/README.md)
-- [Practice 3 & 4](./Practice3_4/README.md)
+- [Practice 3](./Practice3/README.md)
+- [Practice 4](./Practice3/README.md)
 
 ---
