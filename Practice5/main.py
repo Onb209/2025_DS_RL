@@ -78,7 +78,7 @@ class WorldEnv(gym.Env):
     def get_reward(self):
         reward = 0
         # ---------------------------------
-        # TODO : Implement reward function
+        # Implement reward function
         # ---------------------------------
         # Cube1의 중심 좌표
         cube1_center = self.compute_center_pos(0)
