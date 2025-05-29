@@ -25,7 +25,8 @@ CONFIG_FILE = "config.yaml"
 import time
 USER_TORQUE_MODE = False
 
-## World having step_(action) attribute
+# World having step_(action) attribute
+# step_(action)을 통해 외부 policy가 주는 action을 시뮬레이터로 넘겨줄 수 있게 함
 class World_(World):
     def __init__(self,):
         super(World_, self).__init__()
@@ -61,6 +62,7 @@ class WorldEnv(gym.Env):
 
         self.acc_reward = 0.0
 
+    # 시뮬레이션 초기화
     def reset(self, seed=None, options=None):
         self.world.reset()
         cube1_center = self.compute_center_pos(0)
@@ -79,7 +81,7 @@ class WorldEnv(gym.Env):
     def get_reward(self):
         reward = 0
         # ---------------------------------
-        # Implement reward function
+        # TODO: Implement reward function
         # ---------------------------------
         # Cube1의 중심 좌표
         cube1_center = self.compute_center_pos(0)
@@ -127,6 +129,14 @@ class WorldEnv(gym.Env):
 
     def get_obs(self):
         # ---------------------------------
+        # TODO : Implement observation function
+        # ---------------------------------
+        # 큐브 1의 중심 좌표
+        cube1_center = self.compute_center_pos(0)
+        obs = [cube1_center[0]]
+        obs = np.append(obs, [cube1_center[1]])
+
+        # ---------------------------------
         # HINT 2: Cube의 위치와 속도 계산
         # ---------------------------------
         # Cube1 객체 및 중심 좌표 계산
@@ -144,14 +154,6 @@ class WorldEnv(gym.Env):
         #
         # Cube1 속도를 1차원 배열로 변환
         # cube1_vel = cube1.vel.flatten()
-
-        # ---------------------------------
-        # TODO : Implement observation function
-        # ---------------------------------
-        # 큐브 1의 중심 좌표
-        cube1_center = self.compute_center_pos(0)
-        obs = [cube1_center[0]]
-        obs = np.append(obs, [cube1_center[1]])
 
         return np.array(obs, dtype=np.float32)
 
