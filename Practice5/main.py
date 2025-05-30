@@ -26,7 +26,7 @@ import time
 USER_TORQUE_MODE = False
 
 # World having step_(action) attribute
-# step_(action)을 통해 외부 policy가 주는 action을 시뮬레이터로 넘겨줄 수 있게 함
+# 기존 simulation World에 action 기반 step 기능을 추가한 확장 클래스
 class World_(World):
     def __init__(self,):
         super(World_, self).__init__()
@@ -46,7 +46,7 @@ class WorldEnv(gym.Env):
 
         self.action_scale = self.cfg_env.get("action_scale", 500.0)
 
-        self.world = world
+        self.world = world # 시뮬레이션 월드 객체
         self.action_space = spaces.Box(low=-500.0, high=500.0, shape=(2,), dtype=np.float32)
         # self.action_space = spaces.Box(low=-1.0, high=1.0, shape=(2,), dtype=np.float32)
 
@@ -57,6 +57,7 @@ class WorldEnv(gym.Env):
         self.max_epi_steps = 300
         self.cur_epi_step = 0
 
+        # Cube1의 중심 위치 초기화
         cube1_center = self.compute_center_pos(0)
         self.prev_cube1_center = cube1_center.copy()
 
@@ -110,6 +111,7 @@ class WorldEnv(gym.Env):
         
 
     def step(self, action):
+        # action을 실제 시뮬레이션에 적용
         self.world.step_(self.action_scale*action)
         self.cur_epi_step += 1
 
@@ -117,10 +119,12 @@ class WorldEnv(gym.Env):
         reward = self.get_reward()
         self.acc_reward += reward
 
+        # 이전 위치 갱신
         cube1_center = self.compute_center_pos(0)
         self.prev_cube1_center = cube1_center.copy()
 
         # trucated : check timeout
+        # 최대 스텝 초과 또는 terminal 조건 체크
         truncated = self.cur_epi_step > self.max_epi_steps
         terminated = self.is_terminal_state()
         info = {}
@@ -204,19 +208,21 @@ def test(env, model, eval_mode=False):
         pygame.quit()
 
     else:
-        obs = env.get_obs()
-        accumulated_time = 0.0
-        last_sim_time = time.time()
+        obs = env.get_obs() # 현재 관측값
+        accumulated_time = 0.0 # 누적 시뮬레이션 시간
+        last_sim_time = time.time() # 이전 시뮬레이션 타임스탬프
         SIM_TIME_STEP = world.simulation.time_step
 
+        # 렌더링 루프
         while world.running:
             now = time.time()
-            elapsed = now - last_sim_time
+            elapsed = now - last_sim_time # 지난 루프 이후 경과 시간 계산
             last_sim_time = now
             accumulated_time += elapsed
 
+            # 시뮬레이션 타임스텝이 쌓인 만큼 여러 번 step 수행
             while accumulated_time >= SIM_TIME_STEP:
-                action, _ = model.predict(obs, deterministic=True)
+                action, _ = model.predict(obs, deterministic=True) 
                 world.handle_events()
 
                 if USER_TORQUE_MODE:
@@ -230,6 +236,7 @@ def test(env, model, eval_mode=False):
 
                 accumulated_time -= SIM_TIME_STEP
 
+            # 매 프레임마다 렌더링
             world.render()
 
         pygame.quit()
@@ -266,16 +273,18 @@ def main():
 
     args = parser.parse_args()
 
+    # 설정 로드
     with open(CONFIG_FILE, "r") as f:
         config = yaml.safe_load(f)
 
     cfg_policy_kwargs = config.get("policy_kwargs", {})
     cfg_ppo_kwargs = config.get("ppo_kwargs", {})
 
-
+    # 환경 초기화
     world = initWorld(World_(), args.train)
     env = WorldEnv(world)
 
+    # PPO Poliicy 구성
     # The value on the side is the default value when the 'key' does not exit.
     # You should change the config.yml file to make any difference.
     policy_kwargs = dict(
@@ -298,6 +307,7 @@ def main():
         **ppo_kwargs,
         policy_kwargs=policy_kwargs,
     )
+
     # 모델 로드 여부 확인. 로드하지 않으면 랜덤한 policy network 생성
     if args.load:
         print(f"Loading model: {args.load}")
@@ -311,6 +321,7 @@ def main():
             **ppo_kwargs,
             policy_kwargs=policy_kwargs,
         )
+
     # train 또는 test 모드 선택
     if args.train:
         print("Train mode activated.")
