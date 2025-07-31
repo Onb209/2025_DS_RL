@@ -175,5 +175,11 @@ Practice1&2/checkpoints/
 Practice1&2/outputs/
 Practice1&2/_utils/
 Practice5_Answer/
+Practice5_Answer/logs/
+Practice5_Answer/tb_logs/
 Practice5/logs/
 Practice5/tb_logs/
+Project/Walker2D/checkpoints/
+Project/Walker2D/logs/
+Project/Walker2D/venv/
+Project/Walker2D/bkup/

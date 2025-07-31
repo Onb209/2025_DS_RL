@@ -6,30 +6,34 @@ import matplotlib.pyplot as plt
 from tqdm import tqdm
 from algos.dynamic_programming import plot_value_and_policy
 
-
-def q_learning(env, episodes=500, alpha=0.1, gamma=0.99, epsilon=0.05, render=False, log_interval=100):
-    # Q table 초기화
+def q_learning(env, episodes=500, alpha=0.1, gamma=0.99, epsilon=1.0, render=False, log_interval=100):
     Q = defaultdict(lambda: {a: 0.0 for a in Action})
     
     reward_history = []
     success_rate_history = []
-    total_reward = 0
     success_count = 0
-    max_steps = 100
+    max_steps = 500
+
+    # ✅ epsilon decay 설정
+    initial_epsilon = 1.0
+    min_epsilon = 0.05
+    decay_rate = 0.99
 
     for episode in tqdm(range(episodes), desc="Training Q-Learning"):
-        state = tuple(env.reset()) # 환경을 초기화하고, state를 tuple 형태로 변환해 사용
+        # ✅ epsilon decay 적용
+        epsilon = max(min_epsilon, initial_epsilon * (decay_rate ** episode))
+
+        state = tuple(env.reset())
         done = False
         episode_reward = 0
         steps = 0
 
-        # while not done:
         while not done and steps < max_steps:
             if render and episode % 500 == 0:
                 env.render()
                 time.sleep(0.05)
 
-            # epsilon-greedy 하게 action 선택
+            # epsilon-greedy action 선택
             if random.random() < epsilon:
                 action = random.choice(list(Action))
             else:
@@ -38,14 +42,14 @@ def q_learning(env, episodes=500, alpha=0.1, gamma=0.99, epsilon=0.05, render=Fa
             next_state, reward, done = env.step(action.value)
             next_state = tuple(next_state)
 
-            # next_state에서 가능한 모든 action 중 가장 Q값이 큰 것을 고름
-            # 가장 좋은 action을 했을 경우의 미래 기대값을 가정하는 것. 실제로 어떤 action을 할지와는 상관없이, 가장 좋은 걸 했다고 가정
-            # exploration은 했지만, 학습은 항상 이상적인 행동 기준으로
-            max_next = max(Q[next_state].values())
-            Q[state][action] += alpha * (reward + gamma * max_next - Q[state][action]) # Q-learning update
-            
-            state = next_state
+            # ✅ 보상 업데이트: goal 도달 시 명확히 강화
+            if done and reward == 100:
+                Q[state][action] += alpha * (reward - Q[state][action])
+            else:
+                max_next = max(Q[next_state].values())
+                Q[state][action] += alpha * (reward + gamma * max_next - Q[state][action])
 
+            state = next_state
             episode_reward += reward
             if reward == 100:
                 success_count += 1
@@ -67,14 +71,13 @@ def q_learning(env, episodes=500, alpha=0.1, gamma=0.99, epsilon=0.05, render=Fa
 
     policy = {state: max(actions, key=actions.get) for state, actions in Q.items()}
 
-    # plt.figure()
-    # plt.plot(reward_history)
-    # plt.xlabel('Episode')
-    # plt.ylabel('Total Reward')
-    # plt.title('Q-Learning - Episode Rewards')
-    # plt.grid(True)
-    # plt.savefig('outputs/q_learning_rewards.png')
-    # plt.close()
+    plt.figure()
+    plt.plot(reward_history)
+    plt.xlabel('Episode')
+    plt.ylabel('Total Reward')
+    plt.title('Q-Learning - Episode Rewards')
+    plt.grid(True)
+    plt.savefig('outputs/q_learning_rewards.png')
+    plt.close()
 
     return Q, policy
-

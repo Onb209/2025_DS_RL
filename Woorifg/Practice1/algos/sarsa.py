@@ -6,7 +6,7 @@ from tqdm import tqdm
 from _utils.plot import plot_value_and_policy
 import matplotlib.pyplot as plt
 
-def sarsa(env, episodes=500, alpha=0.1, gamma=0.99, epsilon = 0.05, render=False, log_interval=100):
+def sarsa(env, episodes=500, alpha=0.1, gamma=0.9, epsilon = 0.0001, render=False, log_interval=100):
     # Q-value table 초기화: 모든 state-action 쌍에 대해 Q값을 0으로 초기화
     Q = defaultdict(lambda: {a: 0.0 for a in Action})
 
