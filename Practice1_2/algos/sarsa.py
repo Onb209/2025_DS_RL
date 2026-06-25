@@ -47,14 +47,19 @@ def sarsa(env, episodes=500, alpha=0.1, gamma=0.99, epsilon=1.0, render=False, l
 
             total_reward += reward
 
-            # 다음 action도 epsilon-greedy
-            if random.random() < epsilon:
-                next_action = random.choice(list(Action))
+            # terminal(trap/goal)이면 bootstrap 하지 않음 → Q[terminal] 접근/생성 X
+            if done:
+                next_action = None
+                td_target = reward
             else:
-                next_action = max(Q[next_state], key=Q[next_state].get)
+                # 다음 action도 epsilon-greedy
+                if random.random() < epsilon:
+                    next_action = random.choice(list(Action))
+                else:
+                    next_action = max(Q[next_state], key=Q[next_state].get)
+                td_target = reward + gamma * Q[next_state][next_action]
 
             # SARSA update
-            td_target = reward + gamma * Q[next_state][next_action]
             Q[state][action] += alpha * (td_target - Q[state][action])
 
             state, action = next_state, next_action

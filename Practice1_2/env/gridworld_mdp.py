@@ -9,9 +9,9 @@ class GridWorldMDP:
         self.width = env.width
         self.actions = list(Action)
 
-        # 벽이 아닌 모든 타일을 state로 정의
+        # 벽과 terminal(trap/goal)이 아닌 모든 타일을 state로 정의
         self.states = [(y, x) for y in range(self.height) for x in range(self.width)
-                       if env.grid[y][x] != TileType.WALL]
+                       if env.grid[y][x] not in (TileType.WALL, TileType.TRAP, TileType.GOAL)]
         # print(self.states)
 
 

@@ -42,8 +42,8 @@ def q_learning(env, episodes=500, alpha=0.1, gamma=0.99, epsilon=1.0, render=Fal
             next_state, reward, done = env.step(action.value)
             next_state = tuple(next_state)
 
-            # ✅ 보상 업데이트: goal 도달 시 명확히 강화
-            if done and reward == 100:
+            # terminal(trap/goal)이면 bootstrap 하지 않음 → Q[terminal] 접근/생성 X
+            if done:
                 Q[state][action] += alpha * (reward - Q[state][action])
             else:
                 max_next = max(Q[next_state].values())
